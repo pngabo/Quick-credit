@@ -1,14 +1,14 @@
 import express from 'express';
 import userController from '../controllers/user/userController';
-// import auth from '../controllers/user/auth';
+import login from '../controllers/user/signIn';
+import signup from '../controllers/user/signup';
+
 
 const router = express.Router();
 
 router.get('/api/v1/users', userController.getUsers);
 router.get('/api/v1/users/:id', userController.getUser);
-// router.push('/api/v1/users',userController);
-router.post('/api/v1/users', userController.createUser);
-
-// router.post('/api/v1/auth', auth.loginUser);
+router.post('/api/v1/auth/signup', signup.userSignup);
+router.post('/api/v1/auth/signin', login.signin);
 
 export default router;
