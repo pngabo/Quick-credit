@@ -1,4 +1,4 @@
-import userdb from '../../modules/usersDb';
+import userdb from '../../models/usersDb';
 
 class VerifyUser{
     verify(req, res) {

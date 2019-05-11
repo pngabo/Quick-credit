@@ -1,4 +1,4 @@
-import db from '../../modules/usersDb';
+import db from '../../models/usersDb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 

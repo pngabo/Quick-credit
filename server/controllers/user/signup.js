@@ -1,4 +1,4 @@
-import db from '../../modules/usersDb';
+import db from '../../models/usersDb';
 import moment from 'moment';
 import Joi from 'joi';
 import bcrypt from 'bcrypt';
