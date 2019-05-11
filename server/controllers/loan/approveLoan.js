@@ -1,4 +1,4 @@
-import loandb from '../../modules/loanDb';
+import loandb from '../../models/loanDb';
 
 class ApproveLoan{
     approve(req, res) {

@@ -1,4 +1,4 @@
-import loanDb from '../../modules/loanDb';
+import loanDb from '../../models/loanDb';
 import Joi from 'joi';
 import moment from 'moment';
 
