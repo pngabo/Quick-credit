@@ -9,9 +9,9 @@ npm install
 ```
 - Starting the development server
 ```
- npm run dev
+ npm start
  ```
- - Run tests
+ - npm tests
 
  ```
   npm run tests
