@@ -11,7 +11,7 @@ describe('USER SIGN UP TEST', () => {
       firstname: 'Patrick',
       lastname: 'Ngabonziza',
       gender: 'Male',
-      address:'Kigali',
+      address: 'Kigali',
       email: 'ngabop7@gmail.com',
       password: '12345',
     };
@@ -32,7 +32,7 @@ describe('USER SIGN UP TEST', () => {
     const user = {
       lastname: 'Ngabonziza',
       gender: 'Male',
-      address:'Kigali',
+      address: 'Kigali',
       email: 'ngabo@gmail.com',
       password: '12345'
     };
@@ -49,7 +49,7 @@ describe('USER SIGN UP TEST', () => {
     const user = {
       lastname: 'Ngabonziza',
       gender: 'Male',
-      address:'Kigali',
+      address: 'Kigali',
       email: 'ngabop7@gmail.com',
       password: '12345'
     };
@@ -65,7 +65,7 @@ describe('USER SIGN UP TEST', () => {
     const user = {
       firstname: 'Patrick',
       gender: 'Male',
-      address:'Kigali',
+      address: 'Kigali',
       email: 'ngabo@gmail.com',
       password: '12345'
     };
@@ -77,5 +77,18 @@ describe('USER SIGN UP TEST', () => {
         done();
       });
   });
-
+  // VERIFY USER
+  it('should return be able to verify user', (done) => {
+    const id=1;
+    const user = {
+      status: 'verified'
+    };
+    chai.request(app)
+      .patch(`/api/v1/users/${id}`)
+      .send(user)
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
 });
