@@ -1,23 +1,13 @@
 import db from '../../models/usersDb';
+import validateUser from '../../helpers/validation';
 import moment from 'moment';
-import Joi from 'joi';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 class Signup{
    async  userSignup(req, res) {
-        const schema = {
-          firstname: Joi.string().min(3).max(25).required(),
-          lastname: Joi.string().min(3).max(20).required(),
-          gender: Joi.string().valid("Male", "Female").min(3).max(10).required(),
-          address: Joi.string().min(3).max(25).required(),
-          email: Joi.string().email().required(),
-          password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required(),
-        };
-        const result = Joi.validate(req.body, schema);
-        if (result.error) {
-          return res.status(400).json(result.error.details[0].message);
-        }
+        const {error} = validateUser.signupValidation(req.body);
+        if (error) return res.status(400).json(error.details[0].message);
         const {firstname,lastname,gender,address,email,password}=req.body;
         const isAdmin = false;
         const id = db.length+1;
