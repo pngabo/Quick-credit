@@ -53,7 +53,7 @@ class Signin {
     return res.status(200).json({
       token,
       status:200,
-      message: 'Login succesfull',
+      message: 'Login successfull',
     });
   }
 }

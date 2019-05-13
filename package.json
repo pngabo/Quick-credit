@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node server/app.js",
-    "test": "nyc --reporter=html --reporter=text mocha ./tests/*js --require babel-polyfill --require babel-register --timeout 10000 --exit"
+    "test": "nyc --reporter=html --reporter=text mocha ./tests/*js --require babel-polyfill --require babel-register --timeout 10000 --exit",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "clean": "rm -rf build && mkdir build"
   },
   "repository": {
     "type": "git",
