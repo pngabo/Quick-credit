@@ -23,7 +23,6 @@ describe('TEST APPLY FOR LOAN', () => {
     it('should throw error when the  email does not exist', (done) => {
         chai.request(app)
             .post('/api/v1/loans').send({
-                email: 'ngabo@gmail.com',
                 tenor: 5,
                 amount: 230000,
             })
@@ -54,5 +53,28 @@ describe('TEST APPLY FOR LOAN', () => {
                 res.should.have.status(400);
                 done();
             });
+    });
+
+    it('should throw error when no amount entered', (done) => {
+        chai.request(app)
+            .post('/api/v1/loans').send({
+                email: 'admin@gmail.com',
+                tenor: 12,
+            })
+            .end((err, res) => {
+                res.should.have.status(400);
+                done();
+            });
+    });
+    it('should return all loans', (done) => {
+        chai.request(app)
+            .patch('/api/v1/loans/1').send({
+               
+            })
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+           
     });
 });
