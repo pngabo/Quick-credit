@@ -9,7 +9,11 @@ html {
     background-color: #F0ECE9;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 16px;
+<<<<<<< HEAD
+    height: 100vh;
+=======
     height: 100%;
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
 }
 
 .header {
@@ -69,7 +73,11 @@ html {
 
 .navbar ul li a {
     color: #fff;
+<<<<<<< HEAD
+    font-size: 16px;
+=======
     font-size: 18px;
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
     text-decoration: none;
 }
 
@@ -136,6 +144,11 @@ main {
   .main-widget {
     padding: 20px;
     background: #ffffff;
+<<<<<<< HEAD
+    height: 150px;
+    line-height: 25px;
+=======
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
     border: 1px solid #ffffff;
     -webkit-box-shadow: 0px 4px 16px 3px #c2bcbc80;
     -moz-box-shadow: 0px 4px 16px 3px #b3aeae80;
@@ -158,6 +171,9 @@ main {
     min-height: 100%;
     align-items: stretch;
   }
+<<<<<<< HEAD
+
+=======
   .circle {
     background-color: #e3f0fe;
     width: 60px;
@@ -170,6 +186,7 @@ main {
     text-align: center;
     line-height: 2.5;
   }
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
   .number {
     font-size: 24px;
     font-weight: 500;
@@ -181,6 +198,10 @@ main {
     flex: 1;
     text-align: center;
     padding: 3%;
+<<<<<<< HEAD
+    height: 250px;
+=======
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
   }
 
   footer {
@@ -195,7 +216,11 @@ main {
     flex-flow: row wrap;
     padding: 5% 0;
     color: #fff;
+<<<<<<< HEAD
+    background-color: #3e3f41;
+=======
     background-color: #1e2127;
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
     padding: 10px;
     flex-shrink: 0;
   }
@@ -239,7 +264,11 @@ main {
   justify-content: center;
 }
 .login-form input {
+<<<<<<< HEAD
+  min-width: 50%;
+=======
   min-width: 70%;
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
   margin: 10px;
 }
 .login-form input[type="text"],
@@ -281,11 +310,14 @@ input[type="password"] {
   color: #e8491d;
 }
 
+<<<<<<< HEAD
+=======
 
 
 
 
 
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
 .side-content {
   display: -webkit-box;
   display: -moz-box;
@@ -298,9 +330,30 @@ input[type="password"] {
   flex: 1;
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
+  background-color: #0a0d46;
+  color: #e4dcdc;
+}
+.tables{
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.tables table, th,td{
+border-collapse: collapse;
+border-bottom: 1px solid #ddd;
+padding: 10px;
+}
+.tables thead{
+background: #cccccc;
+/* color: #ffffff; */
+}
+=======
   background-color: #04084b;
   color: #e4dcdc;
 }
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
 .sidenav ul li {
   text-align: center;
   
@@ -325,6 +378,24 @@ input[type="password"] {
   text-align: center;
   min-height: 400px;
 }
+<<<<<<< HEAD
+.form-content{
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+.form-header{
+  padding: 30px;
+}
+.form-content input[type=text],input[type=submit],input[type=email]{
+ width: 50%;
+ margin: 10px auto;
+ padding: 10px;
+border: 1px solid #ddd;
+ display: block;
+ font-size: 16px;
+}
+=======
+>>>>>>> fd38795cec272df7d6e4a6103158665869378440
 .dashcontent p {
   padding: 1%;
 }

@@ -8,7 +8,7 @@ class UsersController {
         message: "users retrieved successfully",
         Users: db,
       });
-    } else
+    } elseclear
       return res.status(404).json({
         status: 404,
         message: "No users found",
