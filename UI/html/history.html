@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Quick Credit - User Dashboard | Apply for Loan</title>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 
 <body>
     <article>
         <div class="header">
             <div class="logo">
-                <a href="index.html"><img src="./images/logoquick.png"></a>
+                <a href="index.html"><img src="../images/logoquick.png"></a>
             </div>
             <div class="navbar">
                 <ul>
@@ -21,7 +21,7 @@
                     <!-- <li><a href="login.html">Sign-in</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="about.html"></a></li> -->
-                    <li><a href="index.html">Logout</a></li>
+                    <!-- <li><a href="index.html">Logout</a></li> -->
                 </ul>
             </div>
         </div>
@@ -33,17 +33,39 @@
                         <ul>
                             <li><a href="dashboard.html">Dashboard</a></li>
                             <li><a href="profile.html">Profile</a></li>
-                            <li><a href="apply.html">Apply for Loan</a></li>
+                            <li><a href="application.html">Apply for Loan</a></li>
                             <li><a href="history.html">Loan History</a></li>
-                            <li><a href="index.html">Logout</a></li>
+                            <li><a href="login.html">Logout</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="dashcontent">
-                        
-                        <p>No loan history found</p>
-                        <a href="apply.html" class="btn">Apply Now</a>
-                      </div>
+                    <form class="tables">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="6">LOAN HISTORY</th>
+                                </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>LOAN ID</th>
+                                    <th>NAME</th>
+                                    <th>TENOR</th>
+                                    <th>LOAN AMOUNT</th>
+                                    <th>PAID ON</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td>1</td>
+                                <td>1001</td>
+                                <td>John Smith</td>
+                                <td>12</td>
+                                <td>500,000</td>
+                                <td>12/2/2019</td>
+                            </tbody>
+                        </table>
+                    </form>
+
 
                 </div>
             </div>
@@ -57,9 +79,9 @@
                 <p><img src="assets/img/logoquick.png" alt="" class="logo" /></p>
                 <p>
                     Quick Credit is an online lending platform that provides short
-                                term soft loans to individuals. Helps solve problems of financial
-                                inclusion as a way to alleviate poverty and empower low income
-                                earners.
+                    term soft loans to individuals. Helps solve problems of financial
+                    inclusion as a way to alleviate poverty and empower low income
+                    earners.
                 </p>
             </div>
         </footer>
