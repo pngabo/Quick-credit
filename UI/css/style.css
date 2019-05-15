@@ -23,7 +23,7 @@ html {
 }
 
 .logo {
-    color: #fff;
+    color: #2b2929;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -293,15 +293,35 @@ input[type="password"] {
   align-content: center;
   align-items: center;
   font-size: 14px;
+  width: 100%;
 }
 .tables table, th,td{
 border-collapse: collapse;
 border-bottom: 1px solid #ddd;
 padding: 10px;
 }
-.tables thead{
-background: #cccccc;
-/* color: #ffffff; */
+.table-head{
+  background: #041c5e;
+}
+.tables th{
+  background: #ddd;
+}
+.tables table{
+  width: 100%;
+}
+.app-btn{
+  background: #2e8123;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
+}
+.rej-btn{
+  background: #d63e33;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  border-radius: 5px;
 }
 .sidenav ul li {
   text-align: center;
@@ -341,6 +361,10 @@ background: #cccccc;
 border: 1px solid #ddd;
  display: block;
  font-size: 16px;
+}
+.form-content input[type=submit]{
+  background: #0a0d46;
+  color: #fff;
 }
 .dashcontent p {
   padding: 1%;
@@ -431,15 +455,7 @@ border: 1px solid #ddd;
       -webkit-flex-direction: column;
       flex-direction: column;
     }
-    /* .testimonial-content {
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-    }
-    .testimonial1 {
-      padding: 5%;
-    } */
+   
     .main-cont {
       margin-top: 40px;
     }
