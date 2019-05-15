@@ -119,31 +119,6 @@ input[type=submit] {
   width: 100%;
 }
 
-.sidenav {
-  float: left;
-  background: #535252;
-  width: 220px;
-}
-
-.sidenav ul {
-  padding: 30px 0px 30px 0px;
-  list-style: none;
-}
-
-.sidenav ul li {
-  border-bottom: 1px solid #292828;
-}
-
-.sidenav ul li a {
-  display: block;
-  text-decoration: none;
-  color: #ffffff;
-  padding: 15px;
-}
-
-.sidenav ul li a:hover {
-  background: #292828;
-}
 
 /* Main content end here */
 /* Footer */

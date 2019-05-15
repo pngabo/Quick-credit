@@ -302,10 +302,9 @@ padding: 10px;
 }
 .table-head{
   background: #041c5e;
+  color: #fff;
 }
-.tables th{
-  background: #ddd;
-}
+
 .tables table{
   width: 100%;
 }
