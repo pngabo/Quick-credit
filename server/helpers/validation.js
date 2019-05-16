@@ -1,16 +1,16 @@
 import Joi from 'joi';
 
 class Validate {
-    signupValidation(valiUser) {
+    signupValidation(validUser) {
         const schema = {
-            firstname: Joi.string().min(3).max(25).required(),
-            lastname: Joi.string().min(3).max(20).required(),
-            gender: Joi.string().valid("Male", "Female").min(3).max(10).required(),
-            address: Joi.string().min(3).max(25).required(),
-            email: Joi.string().email().required(),
-            password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required(),
+            firstname: Joi.string().min(3).max(25).required().trim().label('First name is required'),
+            lastname: Joi.string().min(3).max(20).required().trim().label('Last name is required'),
+            gender: Joi.string().valid("Male", "Female").min(3).max(10).required().trim().label('Gender is Only Female or Male'),
+            address: Joi.string().min(3).max(25).required().trim().label("'Address can't be empty"),
+            email: Joi.string().email().required().trim().label('Email address has to filled'),
+            password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required().trim().label('Password has to be filled'),
         };
-        return Joi.validate(valiUser, schema);
+        return Joi.validate(validUser, schema);
     }
 
     applyValidation(validAppl) {
