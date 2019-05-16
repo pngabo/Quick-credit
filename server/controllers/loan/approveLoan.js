@@ -1,7 +1,9 @@
 import loandb from '../../models/loanDb';
-
+import validation from '../../helpers/validation';
 class ApproveLoan{
     approve(req, res) {
+      const { error } = validation.validateLoanStatus(req.body);
+      if (error) return res.status(400).json(error.details[0].message);
         const { id } = req.params;
         const data = loandb.find(loan => loan.id === parseInt(id, 10));
         if (data) {

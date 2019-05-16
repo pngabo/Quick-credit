@@ -10,12 +10,14 @@ class OneUserController {
           message: "user retrieved successfully",
           user
         });
+      }else{
+        return res.status(404).send({
+          status: "404",
+          message: "user does not exist"
+        });
       }
     });
-    return res.status(404).send({
-      status: "404",
-      message: "user does not exist"
-    });
+    
   }
 }
 const oneUser = new OneUserController();

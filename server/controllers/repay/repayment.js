@@ -25,7 +25,7 @@ class RepaymentController {
             loan.repaid = true;
         }
         const repayment = {
-            id: repayments.length + 100,
+            id: repayments.length + 1,
             loanId,
             email: loan.email,
             paidOn: moment(new Date()).format('YYYY-MM-DD HH:MM:SS'),
