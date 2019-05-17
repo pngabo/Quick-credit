@@ -5,18 +5,18 @@
 - Quick credit is is an online lending platform that provides short term soft loans for individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
 
 ## REQUIREMENTS
- - User (client) can sign up
- - User (client) can login
- - User (client) can request for only one loan at a time
- - User (client) can view loan repayment history, to keep track of his/her liability or responsibilities
- - User (client) can update profile to meetup requirement after profile rejection
- - Admin can mark a client as verified , after confirming his/her home and work address
- - Admin can view a specific loan application
- - Admin can approve or reject a client’s loan application
- - Admin can post loan repayment transaction in favour of a client
- - Admin can view all loan applications
- - Admin can view all current loans (not fully repaid)
- - Admin can view all repaid loans
+  - User (client) can sign up
+  - User (client) can login
+  - User (client) can request for only one loan at a time
+  - User (client) can view loan repayment history, to keep track of his/her liability or responsibilities
+  - User (client) can update profile to meetup requirement after profile rejection
+  - Admin can mark a client as verified , after confirming his/her home and work address
+  - Admin can view a specific loan application
+  - Admin can approve or reject a client’s loan application
+  - Admin can post loan repayment transaction in favour of a client
+  - Admin can view all loan applications
+  - Admin can view all current loans (not fully repaid)
+  - Admin can view all repaid loans
  
  
 #### Install dependencies
