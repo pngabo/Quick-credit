@@ -32,7 +32,7 @@ npm install
  ```
   npm run tests
   ```
-# Dependancies
+#### Dependancies
 ```
 Nodejs Runtime encviroment that helps to run javascript both on th server and berouese
 ```
@@ -40,11 +40,11 @@ Nodejs Runtime encviroment that helps to run javascript both on th server and be
 Express NodeJS framework used for making the back-end.
 ```
 Joi and Morgan API request body error validation and HTTP Request logger respectively.
-# Heroku
+#### Heroku
  ```
  visit link: https://quick-creditv1.com
  ```
-# API-Endpoints
+#### API-Endpoints
 
 JSON Object is returned for every API endpoint, structure of return JSON Object:
 ```
