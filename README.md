@@ -34,7 +34,7 @@ npm install
   ```
 #### Dependancies
 ```
-Nodejs Runtime encviroment that helps to run javascript both on th server and berouese
+Nodejs Runtime environment that helps to run javascript both on the server and browser
 ```
 ```
 Express NodeJS framework used for making the back-end.
