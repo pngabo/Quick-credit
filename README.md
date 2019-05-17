@@ -4,7 +4,7 @@
 
 - Quick credit is is an online lending platform that provides short term soft loans for individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
 
-# REQUIREMENTS
+## REQUIREMENTS
  - User (client) can sign up
  - User (client) can login
  - User (client) can request for only one loan at a time
@@ -19,7 +19,7 @@
  - Admin can view all repaid loans
  
  
-- Install dependencies
+#### Install dependencies
 ```
 npm install
 ```
