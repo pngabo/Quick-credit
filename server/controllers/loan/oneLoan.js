@@ -1,6 +1,6 @@
 import loanDb from '../../models/loanDb';
 class OneLoanController{
-    getLoan(req, res) {
+  static  getLoan(req, res) {
         const id = parseInt(req.params.id, 10);
         loanDb.map(loan => {
             if (loan.id === id) {
@@ -14,9 +14,6 @@ class OneLoanController{
                 error: "Loan does not exist"
             });            
         });
-          
-    
     }
 }
-const oneloan = new OneLoanController();
-export default oneloan;
+export default OneLoanController;

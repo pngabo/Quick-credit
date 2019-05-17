@@ -3,7 +3,8 @@ import loandb from '../../models/loanDb';
 import moment from 'moment';
 
 class RepaymentController {
-    repayLoan(req, res) {
+   static repayLoan(req, res) {
+       try {
         const loanId = parseInt(req.params.id, 10);
         const paidAmount = Number(req.body.paidAmount);
         const getLoan = loandb.find(item => item.id === loanId);
@@ -42,16 +43,22 @@ class RepaymentController {
                 data: repayment,
             });
         }
+       } catch (error) {
+        return res.status(500).json({
+            status: 500,
+            error: 'Internal Server error',
+        });
+       } 
     }
 
-    getrepayments(req, res) {
+   static getrepayments(req, res) {
         return res.status(200).json({
             status: 200,
             message: 'LIST OF ALL REPAYMENTS',
             repayments,
         });
     }
-    getLoanPayment(req, res) {
+  static  getLoanPayment(req, res) {
         const {
             id
         } = req.params;
@@ -69,7 +76,5 @@ class RepaymentController {
             });
         }
     }
-
 }
-const repaymentController = new RepaymentController();
-export default repaymentController;
+export default RepaymentController;

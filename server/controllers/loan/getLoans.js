@@ -1,7 +1,7 @@
 import loans from '../../models/loanDb';
 
 class LoanController {
-  getCurrentLoans(req, res) {
+static getCurrentLoans(req, res) {
     if (Object.keys(req.query).length === 0) {
       return res.status(200).json({
         message: 'ALL CLIENT LOANS',
@@ -27,5 +27,4 @@ class LoanController {
     }
   }
 }
-const loanController = new LoanController();
-export default loanController;
+export default LoanController;

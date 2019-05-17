@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 class Signin {
-  async signin(req, res) {
+ static async signin(req, res) {
     const {
       email,
       password,
@@ -31,30 +31,31 @@ class Signin {
     } = findUser;
 
     const payload = {
-      id:findUser.id,
-      firstname:findUser.firstname,
-      lastname:findUser.lastname,
-      email:findUser.email,
-      status:findUser.status,
-      isAdmin: findUser.isAdmin,
+      id,
+      firstname,
+      lastname,
+      email,
+      status,
+      isAdmin,
     };
-    const token = jwt.sign(payload, 'secret-key', {
+    const SECRET_KEY = "secretkey23456";
+    const token = jwt.sign(payload, SECRET_KEY, {
       expiresIn: '1h'
     });
+
+    const result = {
+      token,
+      id,
+      firstname,
+      lastname,
+      email,
+    };
     return res.status(200).json({
       token,
       status:200,
-      message: 'LOGGED IN SUCCESFULLY',
-      token,
-      id: findUser.id,
-      firstname:findUser.firstname,
-      lastname: findUser.lastname,
-      email: findUser.email,
-      status: findUser.status,
-      isadmin:findUser.isAdmin,
+      message: 'Login successfull',
     });
   }
 }
-const signin = new Signin();
-export default signin;
+export default Signin;
 

@@ -5,7 +5,6 @@ import oneUser from '../controllers/user/oneUser';
 import login from '../controllers/user/signIn';
 import signup from '../controllers/user/signup';
 
-
 const router = express.Router();
 
 router.get('/api/v1/users', users.getUsers);

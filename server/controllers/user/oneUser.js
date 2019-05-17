@@ -1,7 +1,7 @@
 import db from "../../models/usersDb";
 
 class OneUserController {
-  getUser(req, res) {
+  static getUser(req, res) {
     const id = parseInt(req.params.id, 10);
     db.map(user => {
       if (user.id === id) {
@@ -10,15 +10,14 @@ class OneUserController {
           message: "user retrieved successfully",
           user
         });
-      }else{
+      } else {
         return res.status(404).send({
           status: "404",
           message: "user does not exist"
         });
       }
     });
-    
+
   }
 }
-const oneUser = new OneUserController();
-export default oneUser;
+export default OneUserController;

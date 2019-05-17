@@ -3,7 +3,7 @@ import appValidation from '../../helpers/validation';
 import moment from 'moment';
 
 class ApplyLoan {
-    loanApply(req, res) {
+ static loanApply(req, res) {
         const {
             error
         } = appValidation.applyValidation(req.body);
@@ -42,5 +42,4 @@ class ApplyLoan {
         });
     }
 }
-const applyLoan = new ApplyLoan();
-export default applyLoan;
+export default ApplyLoan;

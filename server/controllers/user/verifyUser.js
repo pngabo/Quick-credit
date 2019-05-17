@@ -2,7 +2,7 @@ import userdb from '../../models/usersDb';
 import verifyUsers from '../../helpers/validation';
 
 class VerifyUser {
-  verify(req, res) {
+static  verify(req, res) {
     const { error } = verifyUsers.verifyUser(req.body);
     if (error) return res.status(400).json(error.details[0].message);
       const { email } = req.params;
@@ -29,4 +29,4 @@ class VerifyUser {
       });
     }
 }
-export default new VerifyUser();
+export default VerifyUser;
