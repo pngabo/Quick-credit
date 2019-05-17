@@ -7,16 +7,15 @@ class OneLoanController{
                 return res.status(200).send({
                     status: "200",
                     message: "loan retrieved successfully",
-                    loan
+                    data: loan,
                 });
-            }else {
-                return res.status(404).send({
-                    status: "404",
-                    error: "Loan does not exist"
-                });
-            }
+            }  return res.status(404).send({
+                status: "404",
+                error: "Loan does not exist"
+            });            
         });
-        
+          
+    
     }
 }
 const oneloan = new OneLoanController();

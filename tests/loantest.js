@@ -88,35 +88,32 @@ describe('TEST APPLY FOR LOAN', () => {
     });
     it('it should show loan not found', (done) => {
         chai.request(app)
-          .get('/api/v1/loans/10')
-          .end((err, res) => {
-            res.should.have.status(404);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-      it('it should Approve or Reject loan application', (done) => {
+            .get('/api/v1/loans/10')
+            .end((err, res) => {
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+                done();
+            });
+    });
+    it('it should Approve or Reject loan application', (done) => {
         chai.request(app)
-          .patch('/api/v1/loans/1')
-          .send({
-            status: 'approved'
-          })
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-    //   it('it should not Approve or Reject an empty status', (done) => {
-    //     chai.request(app)
-    //       .patch('/api/v1/loans/1')
-    //       .send({
-    //         status: ''
-    //       })
-    //       .end((err, res) => {
-    //         res.should.have.status(400);
-    //         res.body.should.be.a('object');
-    //         done();
-    //       });
-    //   });
+            .patch('/api/v1/loans/1')
+            .send({
+                status: 'approved'
+            })
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                done();
+            });
+    });
+    it('It should get all repaid loans', (done) => {
+        chai.request(app).get('/api/v1/loans?status=approved&repaid=true')
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.body.should.be.a('object');
+                res.body.data.should.be.a('array');
+                done();
+            });
+    });
 });

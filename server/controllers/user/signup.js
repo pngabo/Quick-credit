@@ -8,7 +8,7 @@ class Signup{
    async  userSignup(req, res) {
         const {error} = validateUser.signupValidation(req.body);
         if (error) return res.status(400).json(error.details[0].message);
-        const {firstname,lastname,gender,address,email,password}=req.body;
+        const {firstname,lastname,gender,address,email,password} = req.body;
         const isAdmin = false;
         const id = db.length+1;
         const status = 'unverified';
@@ -36,7 +36,10 @@ class Signup{
         return res.status(201).json({
           status: 201,
           message: "user created successfully",
-          data: [{token,user}],
+          data: {
+            token,
+            user,
+          }
         });
       }    
 }

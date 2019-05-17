@@ -3,7 +3,7 @@ import appValidation from '../../helpers/validation';
 import moment from 'moment';
 
 class ApplyLoan {
-    async loanApply(req, res) {
+    loanApply(req, res) {
         const {
             error
         } = appValidation.applyValidation(req.body);

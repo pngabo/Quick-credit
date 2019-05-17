@@ -12,6 +12,6 @@ router.get('/api/v1/users', users.getUsers);
 router.get('/api/v1/users/:id', oneUser.getUser);
 router.post('/api/v1/auth/signup', signup.userSignup);
 router.post('/api/v1/auth/signin', login.signin);
-router.patch('/api/v1/users/:id', verify.verify);
+router.patch('/api/v1/users/:email/verify', verify.verify);
 
 export default router;
