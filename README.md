@@ -48,36 +48,36 @@ Joi and Morgan API request body error validation and HTTP Request logger respect
 
 JSON Object is returned for every API endpoint, structure of return JSON Object:
 ```
-POST /api/v1/auth/signup Create user account
+  - POST /api/v1/auth/signup Create user account
 
-- POST /api/v1/auth/signin Login a user
+  - POST /api/v1/auth/signin Login a user
 
-- GET /api/v1/user Get all user
+  - GET /api/v1/user Get all user
 
-- GET /api/v1/user/<:id> Get a user
+  - GET /api/v1/user/<:id> Get a user
 
-- PATCH /api/v1/user/<:id> Update a user
+  - PATCH /api/v1/user/<:id> Update a user
 
-- DELETE /api/v1/user/<:id> Delete a user
+  - DELETE /api/v1/user/<:id> Delete a user
 
-- POST /api/v1/loans Create a loan application
+  - POST /api/v1/loans Create a loan application
 
-- GET /api/v1/loans/<:loan-id>/repayment View loan repayment history
+  - GET /api/v1/loans/<:loan-id>/repayment View loan repayment history
 
-- GET /api/v1/loans Get all loan applications
+  - GET /api/v1/loans Get all loan applications
 
-- GET /api/v1/loans?status=approved&repaid=false Get all current loans that are not fully repaid
+  - GET /api/v1/loans?status=approved&repaid=false Get all current loans that are not fully repaid
 
-- GET /api/v1/loans?status=approved&repaid=true Get all repaid loans.
+  - GET /api/v1/loans?status=approved&repaid=true Get all repaid loans.
 
-- PATCH /api/v1/users/<:user-email>/verify Mark a user as verified
+  - PATCH /api/v1/users/<:user-email>/verify Mark a user as verified
 
-- GET /api/v1/loans/<:loan-id> Get a specific loan application
+  - GET /api/v1/loans/<:loan-id> Get a specific loan application
 
-- PATCH /api/v1/loans/<:loan-id>/approve or reject a loan application
+  - PATCH /api/v1/loans/<:loan-id>/approve or reject a loan application
 
-- PATCH /api/v1/loans/<:loan-id>/reject or reject a loan application
+  - PATCH /api/v1/loans/<:loan-id>/reject or reject a loan application
 
-- POST /api/v1/loans/<:loan-id>/repayment Create a loan repayment record
+  - POST /api/v1/loans/<:loan-id>/repayment Create a loan repayment record
 
 
