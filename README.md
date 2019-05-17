@@ -1,9 +1,9 @@
-# Quick-credit [![Build Status](https://travis-ci.org/ngabopatrick/Quick-credit.svg?branch=develop)](https://travis-ci.org/ngabopatrick/Quick-credit) [![Coverage Status](https://coveralls.io/repos/github/ngabopatrick/Quick-credit/badge.svg?branch=develop)](https://coveralls.io/github/ngabopatrick/Quick-credit?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/cd92c477487f93412024/maintainability)](https://codeclimate.com/github/ngabopatrick/Quick-credit/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/cd92c477487f93412024/test_coverage)](https://codeclimate.com/github/ngabopatrick/Quick-credit/test_coverage)
-
-Quick credit is is an online lending platform that provides short term soft loans for individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
-
+# Quick-credit [![Build Status](https://travis-ci.org/ngabopatrick/Quick-credit.svg?branch=develop)](https://travis-ci.org/ngabopatrick/Quick-credit) [![Coverage Status](https://coveralls.io/repos/github/ngabopatrick/Quick-credit/badge.svg?branch=develop)](https://coveralls.io/github/ngabopatrick/Quick-credit?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/cd92c477487f93412024/maintainability)](https://codeclimate.com/github/ngabopatrick/Quick-credit/maintainability) 
 
 # Getting started
+
+- Quick credit is is an online lending platform that provides short term soft loans for individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners.
+
 - Install dependencies
 ```
 npm install
