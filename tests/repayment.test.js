@@ -13,7 +13,6 @@ describe('LOAN REPAYMENT', () => {
         chai.request(app)
           .post('/api/v1/loans/1/repayments')
           .send(repayments)
-        //   .set({ token: adminToken })
           .end((err, res) => {
             res.should.have.property('status').eql(201);
             res.body.should.be.a('object');

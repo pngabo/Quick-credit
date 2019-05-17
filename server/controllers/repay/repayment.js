@@ -6,65 +6,70 @@ class RepaymentController {
     repayLoan(req, res) {
         const loanId = parseInt(req.params.id, 10);
         const paidAmount = Number(req.body.paidAmount);
-        const loan = loandb.find(item => item.id === loanId);
-        if (!loan) {
-            return res.status(400).json({
-                status: 400,
-                error: 'Loan with that Id not found',
+        const getLoan = loandb.find(item => item.id === loanId);
+        if (getLoan) {
+            if (parseFloat(getLoan.balance) < paidAmount) {
+                return res.status(400).json({
+                    status: 400,
+                    message: 'you have already fully paid your loan !',
+                });
+            }
+            if (getLoan.status != 'approved') {
+                return res.status(400).json({
+                    status: 400,
+                    message: 'This loan can only be repAid when it is approved!',
+                });
+            }
+            const newBalance = Number(getLoan.balance - paidAmount).toFixed(2);
+            getLoan.balance = newBalance;
+
+            const repayment = {
+                id: repayments.length + 1,
+                loanId,
+                email: getLoan.email,
+                paidOn: moment(new Date()).format('YYYY-MM-DD HH:MM:SS'),
+                paidAmount,
+                amount: getLoan.amount,
+                monthlyInstallment: getLoan.paymentInstallment,
+                balance: getLoan.balance,
+            };
+            repayments.push(repayment);
+            if (newBalance == 0) {
+                getLoan.repaid = true;
+            }
+            return res.status(201).json({
+                status: 201,
+                data: repayment,
             });
         }
-        if (loan.repaid) {
-            return res.status(400).json({
-                status: 400,
-                error: 'You have fully paid your loan already',
-            });
-        }
-        const newBalance = Number(loan.balance - paidAmount).toFixed(2);
-        loan.balance = newBalance;
-        if (newBalance === 0) {
-            loan.repaid = true;
-        }
-        const repayment = {
-            id: repayments.length + 1,
-            loanId,
-            email: loan.email,
-            paidOn: moment(new Date()).format('YYYY-MM-DD HH:MM:SS'),
-            paidAmount,
-            amount: loan.amount,
-            monthlyInstallment: loan.paymentInstallment,
-            balance: loan.balance,
-        };
-        repayments.push(repayment);
-        return res.status(201).json({
-            status: 201,
-            data: repayment,
-        });
     }
 
-    getRepayment(req, res) {
+    getrepayments(req, res) {
+        return res.status(200).json({
+            status: 200,
+            message: 'LIST OF ALL REPAYMENTS',
+            repayments,
+        });
+    }
+    getLoanPayment(req, res) {
         const {
             id
         } = req.params;
-        const data = repayments.find(repayment => repayment.id === parseInt(id, 10));
-        if (data) {
-            const newData = {
-                loanId: data.loanId,
-                email: data.email,
-                createdOn: data.createdOn,
-                paymentInstallment: data.paymentInstallment,
-                amount: data.amount,
-                balance: data.balance,
-            };
-            return res.status(200).send({
+        const getpayment = repayments.filter(payment => payment.loanId === parseInt(id,10));
+        if (getpayment.length >= 1) {
+            return res.status(200).json({
                 status: 200,
-                data: [newData],
+                message: 'PAYMENT DETAILS',
+                getpayment,
+            });
+        } else {
+            res.status(400).json({
+                status: 400,
+                error: 'NO PAYMENT FOUND',
             });
         }
-        return res.status(404).send({
-            status: 404,
-            error: 'No Loan with that id found!',
-        });
     }
+
 }
 const repaymentController = new RepaymentController();
 export default repaymentController;

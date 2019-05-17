@@ -31,29 +31,27 @@ class Signin {
     } = findUser;
 
     const payload = {
-      id,
-      firstname,
-      lastname,
-      email,
-      status,
-      isAdmin,
+      id:findUser.id,
+      firstname:findUser.firstname,
+      lastname:findUser.lastname,
+      email:findUser.email,
+      status:findUser.status,
+      isAdmin: findUser.isAdmin,
     };
-    const SECRET_KEY = "secretkey23456";
-    const token = jwt.sign(payload, SECRET_KEY, {
+    const token = jwt.sign(payload, 'secret-key', {
       expiresIn: '1h'
     });
-
-    const result = {
-      token,
-      id,
-      firstname,
-      lastname,
-      email,
-    };
     return res.status(200).json({
       token,
       status:200,
-      message: 'Login successfull',
+      message: 'LOGGED IN SUCCESFULLY',
+      token,
+      id: findUser.id,
+      firstname:findUser.firstname,
+      lastname: findUser.lastname,
+      email: findUser.email,
+      status: findUser.status,
+      isadmin:findUser.isAdmin,
     });
   }
 }
