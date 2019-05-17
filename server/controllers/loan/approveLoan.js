@@ -1,7 +1,7 @@
 import loandb from '../../models/loanDb';
 import validation from '../../helpers/validation';
 class ApproveLoan{
-    approve(req, res) {
+   static approve(req, res) {
       const { error } = validation.validateLoanStatus(req.body);
       if (error) return res.status(400).json(error.details[0].message);
         const { id } = req.params;
@@ -27,5 +27,4 @@ class ApproveLoan{
         });
       }
 }
-const approveLoan = new ApproveLoan();
-export default approveLoan;
+export default ApproveLoan;

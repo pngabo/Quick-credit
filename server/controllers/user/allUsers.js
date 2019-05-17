@@ -1,7 +1,7 @@
 import db from "../../models/usersDb";
 
 class UsersController {
-  getUsers(req, res) {
+  static getUsers(req, res) {
     if (db.length >= 1) {
       return res.status(200).json({
         status: 200,
@@ -16,5 +16,4 @@ class UsersController {
     }
   }
 }
-const usersController = new UsersController();
-export default usersController;
+export default UsersController;

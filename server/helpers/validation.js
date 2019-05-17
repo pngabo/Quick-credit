@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 class Validate {
-    signupValidation(validUser) {
+  static  signupValidation(validUser) {
         const schema = {
             firstname: Joi.string().min(3).max(25).required().strict().trim().label('First name is required'),
             lastname: Joi.string().min(3).max(20).required().strict().trim().label('Last name is required'),
@@ -13,7 +13,7 @@ class Validate {
         return Joi.validate(validUser, schema);
     }
 
-    applyValidation(validAppl) {
+   static applyValidation(validAppl) {
         const schema = {
             email: Joi.string().email().strict().trim().required(),
             tenor: Joi.number().integer().positive().max(12).required(),
@@ -21,18 +21,17 @@ class Validate {
         };
         return Joi.validate(validAppl, schema);
     }
-    validateLoanStatus(status) {
+  static  validateLoanStatus(status) {
         const schema = {
             status: Joi.string().valid('approved', 'pending', 'rejected').strict().trim().required(),
         };
         return Joi.validate(status, schema);
     }
-    verifyUser(status) {
+  static verifyUser(status) {
         const schema = {
             status: Joi.string().valid('verified', 'unverified').strict().trim().required(),
         };
         return Joi.validate(status, schema);
     }
 }
-const validate = new Validate();
-export default validate;
+export default Validate;
