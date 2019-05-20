@@ -39,10 +39,10 @@ Nodejs Runtime environment that helps to run javascript both on the server and b
 ```
 Express NodeJS framework used for making the back-end.
 ```
-Joi and Morgan API request body error validation and HTTP Request logger respectively.
+Joi request body error validation and HTTP Request
 #### Heroku
  ```
- visit link: https://quick-creditv1.com
+ visit link: https://quick-creditv1.herokuapp.com/
  ```
 #### API-Endpoints
 
