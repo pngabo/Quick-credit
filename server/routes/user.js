@@ -1,16 +1,12 @@
 import express from 'express';
-import verify from '../controllers/user/verifyUser';
-import users from '../controllers/user/allUsers';
-import oneUser from '../controllers/user/oneUser';
-import login from '../controllers/user/signIn';
-import signup from '../controllers/user/signup';
+import UserController from '../controllers/userController';
 
 const router = express.Router();
 
-router.get('/api/v1/users', users.getUsers);
-router.get('/api/v1/users/:id', oneUser.getUser);
-router.post('/api/v1/auth/signup', signup.userSignup);
-router.post('/api/v1/auth/signin', login.signin);
-router.patch('/api/v1/users/:email/verify', verify.verify);
+router.get('/api/v1/users', UserController.getUsers);
+router.get('/api/v1/users/:id', UserController.getUser);
+router.post('/api/v1/auth/signup', UserController.userSignup);
+router.post('/api/v1/auth/signin', UserController.signin);
+router.patch('/api/v1/users/:email/verify', UserController.verify);
 
 export default router;

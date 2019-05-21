@@ -1,5 +1,5 @@
-import repayments from '../../models/repaymentDb';
-import loandb from '../../models/loanDb';
+import repayments from '../models/repaymentDb';
+import loandb from '../models/loanDb';
 import moment from 'moment';
 
 class RepaymentController {
@@ -18,7 +18,7 @@ class RepaymentController {
             if (getLoan.status != 'approved') {
                 return res.status(400).json({
                     status: 400,
-                    message: 'This loan can only be repAid when it is approved!',
+                    message: 'This loan can only be repiid when it is approved!',
                 });
             }
             const newBalance = Number(getLoan.balance - paidAmount).toFixed(2);
