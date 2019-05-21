@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(user);
 app.use(loan);
 app.use(repayment);
-app.use('*', (req, res) => res.status(404).send({
+app.use('/*', (req, res) => res.status(404).send({
     status: 404,
     message: 'URL NOT FOUND',
   }));

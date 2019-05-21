@@ -1,5 +1,5 @@
 import express from 'express';
-import repayment from '../controllers/repay/repayment';
+import repayment from '../controllers/repayment';
 
 const router = express.Router();
 
