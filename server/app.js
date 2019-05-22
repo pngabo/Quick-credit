@@ -13,12 +13,16 @@ app.use(bodyParser.json());
 app.use(user);
 app.use(loan);
 app.use(repayment);
-app.use('*', (req, res) => res.status(404).send({
+app.get('/', (req, res) => res.status(200).send({
+    status: 200,
+    message: 'WELCOME TO QUICK CREDIT',
+  }));
+app.use('/*', (req, res) => res.status(404).send({
     status: 404,
     message: 'URL NOT FOUND',
   }));
   
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}...`);
 });
