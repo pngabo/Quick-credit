@@ -1,114 +1,99 @@
-import loanDb from '../models/loanDb';
-import appValidation from '../helpers/validation';
-import moment from 'moment';
+import Loans from '../models/loan';
+import Validation from '../helpers/validation';
+import Users from '../models/user';
 
 class LoanController {
-    static loanApply(req, res) {
+    static async applyLoan(req, res) {
         const {
             error
-        } = appValidation.applyValidation(req.body);
-        if (error) return res.status(400).json(error.details[0].message);
-        const {
-            email,
-            tenor,
-            amount
-        } = req.body;
-        const id = loanDb.length + 1;
-        const interest = 0.05 * parseInt(amount, 10).toFixed(2);
-        const paymentInstallment = (parseInt(amount, 10) + parseInt(interest, 10)).toFixed(2) / parseInt(tenor, 10).toFixed(2);
-        const balance = parseInt(amount, 10).toFixed(2);
-        const loan = {
-            id,
-            email,
-            amount,
-            tenor,
-            paymentInstallment,
-            balance,
-            status: 'pending',
-            repaid: false,
-            createdOn: moment(new Date()).format('YYYY-MM-DD HH:MM:SS'),
-        };
-        if (loanDb.find(user => user.email === req.body.email)) {
-            return res.status(409).send({
-                status: '409',
-                error: 'You have already applied for loan!',
+        } = Validation.validateApplication(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 400,
+                error: error.details[0].message,
             });
         }
-        loanDb.push(loan);
+
+        const findUser = await Users.getSpecificUser(req.body.email);
+        if (findUser.length === 0) {
+            return res.status(404).send({
+                status: 404,
+                error: 'User does not exist!',
+            });
+        }
+        const loan = await Loans.checkLoan(req.body.email);
+        if (loan.length !== 0) {
+            return res.status(409).json({
+                status: 409,
+                error: 'You already have a pending loan',
+            });
+        }
+        const newLoan = await Loans.applyForLoan(req.body);
         return res.status(201).json({
             status: 201,
-            message: "loan created successfully",
-            data: loan,
+            data: newLoan,
         });
     }
-    static approve(req, res) {
+    static async getAllLoanApps(req, res) {
+        const loans = await Loans.getAllLoans();
+        if (loans.length === 0) {
+            return res.status(404).json({
+                status: 404,
+                error: 'NO LOAN APPLICATIONS FOUND',
+            });
+        }
+        return res.status(200).json({
+            status: 200,
+            data: loans,
+        });
+    }
+    static async getOneLoan(req, res) {
+        if (isNaN(req.params.id)) {
+            return res.status(400).json({
+                status: 400,
+                error: 'LOAN ID MUST AND INTEGER',
+            });
+        }
+        const result = await Loans.getOneLoan(req.params.id);
+        if (result.length === 0) {
+            return res.status(404).json({
+                status: 404,
+                error: 'NO LOAN FOUND WITH THAT ID'
+            });
+        }
+        return res.status(200).json({
+            status: 200,
+            data: result,
+        });
+    }
+    static async loanApproval(req, res) {
+        if (isNaN(req.params.id)) {
+            return res.status(400).send({
+                status: 400,
+                error: 'Invalid URL, loan id must be an integer',
+            });
+        }
         const {
             error
-        } = appValidation.validateLoanStatus(req.body);
-        if (error) return res.status(400).json(error.details[0].message);
-        const {
-            id
-        } = req.params;
-        const data = loanDb.find(loan => loan.id === parseInt(id, 10));
-        if (data) {
-            data.status = req.body.status;
-            const newData = {
-                loanId: data.id,
-                loanAmount: data.amount,
-                tenor: data.tenor,
-                monthlyInstallments: data.paymentInstallment,
-                status: data.status,
-                interest: data.interest,
-            };
-            return res.status(200).send({
-                status: 200,
-                data: [newData],
+        } = Validation.validApproval(req.body);
+        if (error) {
+            return res.status(400).json({
+                status: 400,
+                error: error.details[0].message,
             });
         }
-        return res.status(404).send({
-            status: 404,
-            error: 'No Loan with that id exist on database',
-        });
-    }
-    static getCurrentLoans(req, res) {
-        if (Object.keys(req.query).length === 0) {
-            return res.status(200).json({
-                message: 'ALL CLIENT LOANS',
-                status: 200,
-                data: loanDb,
+        const findLoan = await Loans.getOneLoan(req.params.id);
+        if (findLoan.length ===0) {
+            return res.status(404).json({
+                status: 404,
+                error: 'THIS LOAN DOES NOT EXIST IN DATABASE',
             });
         }
-        const repaidLoans = loanDb.filter(loan => loan.status === req.query.status && loan.repaid.toString() === req.query.repaid);
-        if (req.query.status === 'approved' && req.query.repaid === 'true') {
-            return res.status(200).json({
-                status: 200,
-                data: repaidLoans,
-                message: 'All fully repaid loans',
-            });
-        }
-        const unrepaidLoans = loanDb.filter(loan => loan.status === req.query.status && loan.repaid.toString() === req.query.repaid);
-        if (req.query.status === 'approved' && req.query.repaid === 'false') {
-            return res.status(200).json({
-                status: 200,
-                data: unrepaidLoans,
-                message: 'ALL CURRENT LOANS',
-            });
-        }
-    }
-    static getLoan(req, res) {
-        const id = parseInt(req.params.id, 10);
-        loanDb.map(loan => {
-            if (loan.id === id) {
-                return res.status(200).send({
-                    status: "200",
-                    message: "loan retrieved successfully",
-                    data: loan,
-                });
-            }
-            return res.status(404).send({
-                status: "404",
-                error: "Loan does not exist"
-            });
+        const updateLoan = await Loans.updateLoan(req.params.id, req.body.status);
+        return res.status(200).json({
+            status: 200,
+            message: 'updated loan status',
+            data: updateLoan,
         });
     }
 }
