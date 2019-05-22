@@ -1,9 +1,8 @@
 import express from 'express';
-import repayment from '../controllers/repayment';
+import RepaymentController from '../controllers/repayment';
 
 const router = express.Router();
 
-router.post('/api/v1/loans/:id/repayments', repayment.repayLoan);
-router.get('/api/v1/loans/:id/repayments', repayment.getLoanPayment);
+router.post('/api/v1/loans/:id/repayments', RepaymentController.repayLoan);
 
 export default router;
