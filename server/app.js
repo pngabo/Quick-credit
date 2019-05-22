@@ -13,10 +13,7 @@ app.use(bodyParser.json());
 app.use(user);
 app.use(loan);
 app.use(repayment);
-app.get('/', (req, res) => res.status(200).send({
-    status: 200,
-    message: 'WELCOME TO QUICK CREDIT',
-  }));
+
 app.use('/*', (req, res) => res.status(404).send({
     status: 404,
     message: 'URL NOT FOUND',

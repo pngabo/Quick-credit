@@ -1,7 +1,6 @@
 import app from '../server/app';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import { getMaxListeners } from 'cluster';
 
 chai.should();
 chai.use(chaiHttp);
@@ -77,36 +76,11 @@ describe('USER TEST', () => {
         done();
       });
   });
-  // VERIFY USER
- 
-//   it('it should verify user', (done) => {
-//     const email = 'ngabo@gmail.com';
-//     chai.request(app)
-//         .patch(`/api/v1/users/${email}/verify`)
-//         .send({
-//             status: 'verified'
-//         })
-//         .end((err, res) => {
-//             res.should.have.status(200);
-//             res.body.should.be.a('object');
-//             done();
-//         });
-// });
+
   it('It should return the list of all users', (done) => {
     chai
       .request(app)
       .get('/api/v1/users')
-      .end((error, res) => {
-        if (error) done(error);
-        res.should.have.status(200);
-        res.body.should.be.a('object');
-        done();
-      });
-  });
-  it('It should return a particular user', (done) => {
-    chai
-      .request(app)
-      .get('/api/v1/users/1')
       .end((error, res) => {
         if (error) done(error);
         res.should.have.status(200);
@@ -126,7 +100,6 @@ describe('USER TEST', () => {
         res.body.data.should.have.property('token');
         res.body.data.should.have.property('status');
         res.body.should.have.property('isAdmin');
-
       });
     done();
   });
@@ -141,35 +114,5 @@ describe('USER TEST', () => {
         done();
       });
   });
-  it('should throw error when Incorrect password', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin').send({
-        email: 'admin@gmail.com',
-        password: '12345sdfsd',
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should throw error when entered no email', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin').send({
-        password: 'admin123',
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
-  it('should throw error when no password entered', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signin').send({
-        email: 'admin@gmail.com',
-      })
-      .end((err, res) => {
-        res.should.have.status(400);
-        done();
-      });
-  });
+
 });
