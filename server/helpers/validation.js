@@ -1,45 +1,67 @@
 import Joi from 'joi';
 
-class Validate {
-    static signupValidation(validUser) {
+class Validation {
+    // VALIDATE USER
+    static validateUser(validUser) {
         const schema = {
-            firstname: Joi.string().min(3).max(25).required().strict().trim().label('First name is required'),
-            lastname: Joi.string().min(3).max(20).required().strict().trim().label('Last name is required'),
-            gender: Joi.string().valid("Male", "Female").min(3).max(10).required().strict().trim().label('Gender is Only Female or Male'),
-            address: Joi.string().min(3).max(25).required().strict().trim().label("'Address can't be empty"),
-            email: Joi.string().email().required().strict().trim().label('Email address has to filled'),
-            password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required().strict().trim().label('Password has to be filled'),
+            firstname: Joi.string().alphanum().strict().trim().required(),
+            lastname: Joi.string().alphanum().strict().trim().required(),
+            gender: Joi.string().alphanum().strict().trim().required(),
+            address: Joi.string().strict().trim().required(),
+            phonenumber: Joi.string().strict().trim().required(),
+            occupation: Joi.string().alphanum().strict().trim().required(),
+            email: Joi.string().email().strict().trim().required(),
+            password: Joi.string().strict().trim().required(),
         };
-        return Joi.validate(validUser, schema);
-    }
-    
-    static loginValidation(validUser) {
-        const schema = {
-            email: Joi.string().email().required().strict().trim().label('Email address has to filled'),
-            password: Joi.string().regex(/^[a-zA-Z0-9]{5,30}$/).required().strict().trim().label('Password has to be filled'),
-        };
-        return Joi.validate(validUser, schema);
+        return Joi.validate(validUser, schema, {
+            abortEarly: false
+        });
     }
 
-    static applyValidation(validAppl) {
+    static validLogin(validUser) {
         const schema = {
             email: Joi.string().email().strict().trim().required(),
-            tenor: Joi.number().integer().positive().max(12).required(),
-            amount: Joi.number().precision(2).required(),
+            password: Joi.string().min(5).max(255).strict().trim().required(),
         };
-        return Joi.validate(validAppl, schema);
+        return Joi.validate(validUser, schema, {
+            abortEarly: false
+        });
     }
-    static validateLoanStatus(status) {
+    static validUserVerification(validStatus) {
         const schema = {
-            status: Joi.string().valid('approved', 'pending', 'rejected').strict().trim().required(),
+            status: Joi.string().alphanum().valid('verified', 'unverified').strict().trim().required(),
         };
-        return Joi.validate(status, schema);
+        return Joi.validate(validStatus, schema, {
+            abortEarly: false
+        });
     }
-    static verifyUser(status) {
+    // VALIDATE LOAN APPLICATION
+    static validateApplication(validApp) {
         const schema = {
-            status: Joi.string().valid('verified', 'unverified').strict().trim().required(),
+            email: Joi.string().email().strict().trim().required(),
+            tenor: Joi.number().integer().positive().required(),
+            amount: Joi.number().positive().required(),
         };
-        return Joi.validate(status, schema);
+        return Joi.validate(validApp, schema, {
+            abortEarly: false
+        });
+    }
+    static validApproval(validStatus) {
+        const schema = {
+            status: Joi.string().alphanum().valid('approved', 'rejected').strict().trim().required(),
+        };
+        return Joi.validate(validStatus, schema, {
+            abortEarly: false
+        });
+    }
+    // VALIDATE LOAN REPAYMENT
+    static validPaidamount(validAmount) {
+        const schema = {
+            paidamount: Joi.number().positive().required(),
+        };
+        return Joi.validate(validAmount, schema, {
+            abortEarly: false
+        });
     }
 }
-export default Validate;
+export default Validation;
