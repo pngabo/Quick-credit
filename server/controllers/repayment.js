@@ -1,5 +1,6 @@
 import Validation from '../helpers/validation';
 import Loans from '../models/loan';
+import Repayments from '../models/repayment';
 import pool from '../models/connectdb';
 import queries from '../models/queries';
 import moment from 'moment';
@@ -51,12 +52,26 @@ class RepaymentController {
         ];
         const newBalance = await pool.query(queries.createRepayment, newRepayment);
         const updateLoan = await Loans.updateLoanBalance(loanId, balance);
-        if(balance === 0){
-           const updateStatus = await pool.query(queries.updateStatus,[true,loanId])
+        if (balance === 0) {
+            const updateStatus = await pool.query(queries.updateStatus, [true, loanId])
         }
         return res.status(200).json({
             status: 200,
             data: newBalance.rows[0],
+        });
+    }
+    static async getLoanRepayments(req, res) {
+        
+        const getRepayment = await Repayments.getRepayment(req.params.loanId);
+        if (getRepayment.length === 0) {
+            return res.status(404).json({
+                status: 404,
+                error: 'NO REPAYMENT FOUND WITH THAT LOAN ID'
+            });
+        }
+        return res.status(200).json({
+            status: 200,
+            data: getRepayment,
         });
     }
 }

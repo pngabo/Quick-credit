@@ -34,19 +34,6 @@ class LoanController {
             data: newLoan,
         });
     }
-    static async getAllLoanApps(req, res) {
-        const loans = await Loans.getAllLoans();
-        if (loans.length === 0) {
-            return res.status(404).json({
-                status: 404,
-                error: 'NO LOAN APPLICATIONS FOUND',
-            });
-        }
-        return res.status(200).json({
-            status: 200,
-            data: loans,
-        });
-    }
     static async getOneLoan(req, res) {
         if (isNaN(req.params.id)) {
             return res.status(400).json({
@@ -94,6 +81,36 @@ class LoanController {
             status: 200,
             message: 'updated loan status',
             data: updateLoan,
+        });
+    }
+
+    static async getAllLoansByStatus(req,res){
+        const allLoans = await Loans.getAllLoans();
+        const {status,repaid} = req.query;
+        const findLoanStatus = await Loans.getLoanByStatus(status,repaid);
+        if(findLoanStatus.length !== 0){
+            return res.status(200).json({
+                status: 200,
+                data: findLoanStatus,
+            });
+        }else if(!status && !repaid){
+            return res.status(200).json({
+                status: 200,
+                data: allLoans,
+            });
+        }else{
+            return res.status(404).json({
+                status: 404,
+                error: 'NO LOAN FOUND',
+            });
+        }
+
+        // if(status=== 'approved' && (repaid === 'true' || repaid === 'false')){
+            
+        // }
+        return res.status(404).json({
+            status: 404,
+            error: 'NO LOAN FOUND',
         });
     }
 }
