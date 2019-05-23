@@ -48,14 +48,8 @@ class Loans {
         this.res = await pool.query(queries.approveLoanApplication, [id, status]);
         return [this.res.rows[0]];
     }
-    async updateLoanBalance(id, data, loans) {
-        const newBalance = data.balance || loans[0].balance;
-        this.newId = id;
-        this.newData = [
-            newBalance,
-            this.newId,
-        ];
-        this.res = await pool.query(queries.updateBalance, this.newData);
+    async updateLoanBalance(loanId, balance) {
+        this.res = await pool.query(queries.updateBalance, [loanId, balance]);
         return [this.res.rows[0]];
     }
 }
