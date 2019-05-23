@@ -84,9 +84,9 @@ class LoanController {
                 data: updateLoan,
             });
         } catch (error) {
-            return res.status(400).json({
-                status: 400,
-                error
+            return res.status(500).json({
+                status: 500,
+                error: 'INTERVAL SERVER ERROR'
                
             });
         }
@@ -118,9 +118,9 @@ class LoanController {
                 });
             } 
         } catch (error) {
-            return res.status(400).json({
-                status: 400,
-                error: '',
+            return res.status(500).json({
+                status: 500,
+                error: 'INTERNAL SERVER ERROR',
             });
         }
         

@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL_LOCAL,
+  connectionString: process.env.DATABASE_URL_HEROKU
 });
 pool.on('connect', () => {
   console.log('connected to the Database');

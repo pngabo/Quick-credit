@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL_HEROKU
 });
 
 pool.on('connect', () => {
@@ -21,7 +21,7 @@ const createTables = () => {
         gender VARCHAR(30) NOT NULL,
         address VARCHAR(128) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
-        phonenumber VARCHAR(12) UNIQUE NOT NULL,
+        phonenumber VARCHAR(12) NOT NULL,
         occupation VARCHAR(50) NOT NULL,
         isAdmin BOOLEAN NOT NULL,
         password VARCHAR(255) NOT NULL,
@@ -82,7 +82,6 @@ pool.on('remove', () => {
     process.exit(0);
 });
 
-//export pool and create tables to be accessible from and where within the application
 export {
     createTables,
     dropTables,

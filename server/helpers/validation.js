@@ -12,6 +12,7 @@ class Validation {
             occupation: Joi.string().alphanum().strict().trim().required(),
             email: Joi.string().email().strict().trim().required(),
             password: Joi.string().strict().trim().required(),
+            isAdmin: Joi.boolean().required()
         };
         return Joi.validate(validUser, schema, {
             abortEarly: false

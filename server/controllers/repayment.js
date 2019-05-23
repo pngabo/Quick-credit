@@ -8,8 +8,17 @@ import moment from 'moment';
 class RepaymentController {
     static async repayLaon(req, res) {
         const loanId = parseInt(req.params.id);
+        
         const paidamount = req.body.paidamount;
-        const findLoan = await Loans.getOneLoan(loanId);
+        const {error} = Validation.validPaidamount(paidamount);
+        if(error){
+            return res.status(400).json({
+                status:400,
+                error: error.details[0].message,
+            });
+        }
+        try {
+            const findLoan = await Loans.getOneLoan(loanId);
 
         if (findLoan.length === 0) {
             return res.status(404).json({
@@ -33,7 +42,7 @@ class RepaymentController {
         if (paidamount > findLoan[0].balance) {
             return res.status(400).json({
                 status: 400,
-                error: 'You have already repaid your loan',
+                error: 'You are trying much than you left with your loan',
             });
         }
         const createdOn = moment(new Date());
@@ -59,20 +68,34 @@ class RepaymentController {
             status: 200,
             data: newBalance.rows[0],
         });
-    }
-    static async getLoanRepayments(req, res) {
-        
-        const getRepayment = await Repayments.getRepayment(req.params.loanId);
-        if(getRepayment.rows.length===0){
-            return res.status(404).json({
-                status: 404,
-                error: 'NO REPAYMENT FOUND WITH THAT LOAN ID'
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+               error: 'INTERNAL SERVER ERROR'
             });
         }
-        return res.status(200).json({
-            status: 200,
-            data: getRepayment.rows,
-        });
+        
+    }
+    static async getLoanRepayments(req, res) {
+        try {
+            const getRepayment = await Repayments.getRepayment(req.params.loanId);
+            if(getRepayment.rows.length===0){
+                return res.status(404).json({
+                    status: 404,
+                    error: 'NO REPAYMENT FOUND WITH THAT LOAN ID'
+                });
+            }
+            return res.status(200).json({
+                status: 200,
+                data: getRepayment.rows,
+            }); 
+        } catch (error) {
+            return res.status(500).json({
+                status: 500,
+                error:'INTERNAL SERVER ERROR'
+            }); 
+        }
+        
     }
 }
 export default RepaymentController;

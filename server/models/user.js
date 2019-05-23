@@ -36,7 +36,6 @@ class Users {
     async createUser(user) {
         this.salt = await bcrypt.genSalt(8);
         this.password = await bcrypt.hash(user.password, this.salt);
-        this.isAdmin = false;
         this.status = 'unverified';
         this.createdOn = moment(new Date());
         this.newUser = [
@@ -47,7 +46,7 @@ class Users {
             user.email.trim(),
             user.phonenumber.trim(),
             user.occupation.trim(),
-            this.isAdmin,
+            user.isAdmin,
             this.password.trim(),
             this.status.trim(),
             this.createdOn,
