@@ -12,6 +12,8 @@ describe('USER TEST', () => {
       lastname: 'Ngabonziza',
       gender: 'Male',
       address: 'Kigali, Kicukiro',
+      phonenumber: "078409345324",
+      occupation: "SoftwareD",
       email: 'ngabop7@gmail.com',
       password: '12345',
     };

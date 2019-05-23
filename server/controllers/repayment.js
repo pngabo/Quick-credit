@@ -63,7 +63,7 @@ class RepaymentController {
     static async getLoanRepayments(req, res) {
         
         const getRepayment = await Repayments.getRepayment(req.params.loanId);
-        if (getRepayment.length === 0) {
+        if(getRepayment.rows.length===0){
             return res.status(404).json({
                 status: 404,
                 error: 'NO REPAYMENT FOUND WITH THAT LOAN ID'
@@ -71,7 +71,7 @@ class RepaymentController {
         }
         return res.status(200).json({
             status: 200,
-            data: getRepayment,
+            data: getRepayment.rows,
         });
     }
 }
