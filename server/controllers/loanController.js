@@ -69,49 +69,61 @@ class LoanController {
                 error: error.details[0].message,
             });
         }
-        const findLoan = await Loans.getOneLoan(req.params.id);
-        if (findLoan.length ===0) {
-            return res.status(404).json({
-                status: 404,
-                error: 'THIS LOAN DOES NOT EXIST IN DATABASE',
+        try {
+            const findLoan = await Loans.getOneLoan(req.params.id);
+            if (findLoan.length === 0) {
+                return res.status(404).json({
+                    status: 404,
+                    error: 'THIS LOAN DOES NOT EXIST IN DATABASE',
+                });
+            }
+            const updateLoan = await Loans.updateLoan(req.params.id, req.body.status);
+            return res.status(200).json({
+                status: 200,
+                message: 'updated loan status',
+                data: updateLoan,
+            });
+        } catch (error) {
+            return res.status(400).json({
+                status: 400,
+                error
+               
             });
         }
-        const updateLoan = await Loans.updateLoan(req.params.id, req.body.status);
-        return res.status(200).json({
-            status: 200,
-            message: 'updated loan status',
-            data: updateLoan,
-        });
+
     }
 
-    static async getAllLoansByStatus(req,res){
-        const allLoans = await Loans.getAllLoans();
-        const {status,repaid} = req.query;
-        const findLoanStatus = await Loans.getLoanByStatus(status,repaid);
-        if(findLoanStatus.length !== 0){
-            return res.status(200).json({
-                status: 200,
-                data: findLoanStatus,
-            });
-        }else if(!status && !repaid){
-            return res.status(200).json({
-                status: 200,
-                data: allLoans,
-            });
-        }else{
-            return res.status(404).json({
-                status: 404,
-                error: 'NO LOAN FOUND',
+    static async getAllLoansByStatus(req, res) {
+        try {
+            const allLoans = await Loans.getAllLoans();
+            const {
+                status,
+                repaid
+            } = req.query;
+            const findLoanStatus = await Loans.getLoanByStatus(status, repaid);
+            if (findLoanStatus.length !== 0) {
+                return res.status(200).json({
+                    status: 200,
+                    data: findLoanStatus,
+                });
+            } else if (!status && !repaid) {
+                return res.status(200).json({
+                    status: 200,
+                    data: allLoans,
+                });
+            } else {
+                return res.status(404).json({
+                    status: 404,
+                    error: 'NO LOAN FOUND',
+                });
+            } 
+        } catch (error) {
+            return res.status(400).json({
+                status: 400,
+                error: '',
             });
         }
-
-        // if(status=== 'approved' && (repaid === 'true' || repaid === 'false')){
-            
-        // }
-        return res.status(404).json({
-            status: 404,
-            error: 'NO LOAN FOUND',
-        });
+        
     }
 }
 export default LoanController;
