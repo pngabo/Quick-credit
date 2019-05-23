@@ -15,7 +15,8 @@ const createLoanApplication = `INSERT INTO loans (email, tenor, amount, installm
 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 RETURNING loanId, email, tenor, amount, installment, interest, balance, status, repaid, createdOn`;
 const approveLoanApplication = `UPDATE loans SET status = $2 WHERE loanId = $1 RETURNING *`;
-const updateBalance = `UPDATE loans SET balance = $2 WHERE loanId = $1 RETURNING`;
+const updateBalance = `UPDATE loans SET balance = $2 WHERE loanId = $1 RETURNING *`;
+const updateStatus = `UPDATE loans SET repaid = $2 WHERE loanId = $1 RETURNING *`;
 const getCurrentLoans = `SELECT * FROM loans where status = $1 AND repaid = $2`;
 const getRepaidLoans = `SELECT * FROM loans where status = $1 AND repaid = $2`;
 const getAllLoanApplications = `SELECT * FROM loans`;
@@ -54,6 +55,7 @@ export default {
     getAllLoanApplications,
     checkIfApplicationExist,
     updateBalance,
+    updateStatus,
 
     // LOAN REPAYMENT
     createRepayment,
