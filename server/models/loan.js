@@ -28,6 +28,10 @@ class Loans {
         this.res = await pool.query(queries.getAllLoanApplications);
         return this.res.rows;
     }
+    async getLoanByStatus(status,repaid) {
+        this.res = await pool.query(queries.getLoansByStatus,[status,repaid]);
+        return this.res.rows;
+    }
     async getOneLoan(id) {
         this.loan = [];
         this.res = await pool.query(queries.getSpecificLoan, [id]);
