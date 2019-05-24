@@ -10,7 +10,7 @@ class RepaymentController {
         const loanId = parseInt(req.params.id);
         
         const paidamount = req.body.paidamount;
-        const {error} = Validation.validPaidamount(paidamount);
+        const {error} = Validation.validPaidamount(req.body);
         if(error){
             return res.status(400).json({
                 status:400,
@@ -85,6 +85,7 @@ class RepaymentController {
                     error: 'NO REPAYMENT FOUND WITH THAT LOAN ID'
                 });
             }
+        
             return res.status(200).json({
                 status: 200,
                 data: getRepayment.rows,

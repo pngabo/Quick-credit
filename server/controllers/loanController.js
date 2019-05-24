@@ -21,10 +21,7 @@ class LoanController {
                 error: 'User does not exist!',
             });
         }
-        // const isUserverified = Users.getUserVerification();
-        // if(isUserverified.){
-
-        // }
+        
         const loan = await Loans.checkLoan(req.body.email);
         if (loan.length !== 0) {
             return res.status(409).json({

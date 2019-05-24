@@ -63,7 +63,7 @@ describe('USER TEST', () => {
         res.body.should.be.a('object');
         res.body.data.should.have.property('token');
         res.body.data.should.have.property('status');
-        res.body.should.have.property('isAdmin');
+        res.body.should.have.property('isadmin');
       });
     done();
   });

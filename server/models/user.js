@@ -46,7 +46,7 @@ class Users {
             user.email.trim(),
             user.phonenumber.trim(),
             user.occupation.trim(),
-            user.isAdmin,
+            user.isadmin,
             this.password.trim(),
             this.status.trim(),
             this.createdOn,

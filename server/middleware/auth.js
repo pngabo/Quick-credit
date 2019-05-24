@@ -24,7 +24,7 @@ class Authentication {
 
       try {
         const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
-        req.users = decoded;
+        req.user = decoded;
         return next();
       } catch (error) {
         return res.status('403').send({
@@ -37,7 +37,8 @@ class Authentication {
  // authenticate admin
 
  static async adminAccess (req, res, next){
-    if (req.users.newUser.isAdmin) {
+
+    if (req.user.newUser.isadmin) {
       return next();
     }
       return res.status(403).send({

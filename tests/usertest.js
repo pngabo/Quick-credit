@@ -134,25 +134,11 @@ describe('Homepage, user and required test to run others', () => {
   });
 
   describe('required to run other test', () => {
-    it('it should POST an office', (done) => {
-      chai.request(app)
-        .post('/api/v1/offices')
-        .set('x-http-token', token)
-        .send({
-          type: 'federal',
-          name: 'Governor',
-        })
-        .end((err, res) => {
-          res.should.have.status(201);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
 
     it('it should POST loan application', (done) => {
       chai.request(app)
         .post('/api/v1/loans')
-        .set('x-http-token', token)
+        .set('authorization', token)
         .send({
           email: 'ngabo@gmail.com',
           tenor: 10,
@@ -168,7 +154,7 @@ describe('Homepage, user and required test to run others', () => {
     it('it should POST a loan later to be deleted', (done) => {
       chai.request(app)
         .post('/api/v1/loans')
-        .set('x-http-token', token)
+        .set('authorization', token)
         .send({
             email: 'ngabo@gmail.com',
             tenor: 10,
@@ -186,7 +172,7 @@ describe('Homepage, user and required test to run others', () => {
     it('it should not apply twice', (done) => {
       chai.request(app)
         .post('/api/v1/loans')
-        .set('x-http-token', token)
+        .set('authorization', token)
         .send({
             email: 'ngabo@gmail.com',
             tenor: 10,
@@ -203,12 +189,12 @@ describe('Homepage, user and required test to run others', () => {
   describe('Vote', () => {
     it('it should not add vote with invalid input', (done) => {
       chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
+        .post('/api/v1/laons/1/repayment')
+        .set('authorization', token)
         .send({
-          createdBy: 'clement',
-          office: 1,
-          candidate: 1,
+            email: 'n273663',
+            tenor: 10,
+            amount: 500000,
         })
         .end((err, res) => {
           res.should.have.status(400);
@@ -219,7 +205,7 @@ describe('Homepage, user and required test to run others', () => {
     it('it should not add vote with missing input', (done) => {
       chai.request(app)
         .post('/api/v1/votes')
-        .set('x-http-token', token)
+        .set('authorization', token)
         .send({
           office: 1,
           candidate: 1,
@@ -230,157 +216,5 @@ describe('Homepage, user and required test to run others', () => {
           done();
         });
     });
-    it('it should not add vote with non existing user input', (done) => {
-      chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
-        .send({
-          createdBy: 12,
-          office: 1,
-          candidate: 1,
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-    it('it should not add vote with non existing office input', (done) => {
-      chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
-        .send({
-          createdBy: 1,
-          office: 12,
-          candidate: 1,
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-    it('it should not add vote with non existing candidate', (done) => {
-      chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
-        .send({
-          createdBy: 1,
-          office: 1,
-          candidate: 12,
-        })
-        .end((err, res) => {
-          res.should.have.status(404);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-    it('it should add vote', (done) => {
-      chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
-        .send({
-          createdBy: 1,
-          office: 1,
-          candidate: 1,
-        })
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-    it('it should not vote twice one candidate', (done) => {
-      chai.request(app)
-        .post('/api/v1/votes')
-        .set('x-http-token', token)
-        .send({
-          createdBy: 1,
-          office: 1,
-          candidate: 1,
-        })
-        .end((err, res) => {
-          res.should.have.status(409);
-          res.body.should.be.a('object');
-          done();
-        });
-    });
-    describe('Petition', () => {
-      it('it should not add petition with invalid input', (done) => {
-        chai.request(app)
-          .post('/api/v1/petition')
-          .set('x-http-token', token)
-          .send({
-            createdBy: 'clement',
-            office: 1,
-            body: 1,
-          })
-          .end((err, res) => {
-            res.should.have.status(400);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-      it('it should not add petition with non existing user', (done) => {
-        chai.request(app)
-          .post('/api/v1/petition')
-          .set('x-http-token', token)
-          .send({
-            createdBy: 12,
-            office: 1,
-            body: 'test petition',
-          })
-          .end((err, res) => {
-            res.should.have.status(404);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-      it('it should not add petition with non existing office', (done) => {
-        chai.request(app)
-          .post('/api/v1/petition')
-          .set('x-http-token', token)
-          .send({
-            createdBy: 1,
-            office: 12,
-            body: 'test petition two',
-          })
-          .end((err, res) => {
-            res.should.have.status(404);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-      it('it should add petition', (done) => {
-        chai.request(app)
-          .post('/api/v1/petition')
-          .set('x-http-token', token)
-          .send({
-            createdBy: 1,
-            office: 1,
-            body: 'test petition two',
-          })
-          .end((err, res) => {
-            res.should.have.status(201);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
-      it('it should add not register petition that exist already', (done) => {
-        chai.request(app)
-          .post('/api/v1/petition')
-          .set('x-http-token', token)
-          .send({
-            createdBy: 1,
-            office: 1,
-            body: 'test petition two',
-          })
-          .end((err, res) => {
-            res.should.have.status(409);
-            res.body.should.be.a('object');
-            done();
-          });
-      });
     });
   });
-});
