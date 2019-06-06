@@ -7,7 +7,7 @@ console.log(process.env.NODE_ENV);
 // DATABASE CONNECTION
 if (process.env.NODE_ENV === 'production') {
   module.exports = new Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL_PRO,
   });
 }
 
