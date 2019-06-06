@@ -82,7 +82,7 @@ pool.on('remove', () => {
     process.exit(0);
 });
 
-export default{
+export{
     createTables,
     dropTables,
     pool,
