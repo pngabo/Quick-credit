@@ -1,4 +1,4 @@
-# Quick-credit [![Build Status](https://travis-ci.org/ngabopatrick/Quick-credit.svg?branch=develop)](https://travis-ci.org/ngabopatrick/Quick-credit) [![Coverage Status](https://coveralls.io/repos/github/ngabopatrick/Quick-credit/badge.svg?branch=develop)](https://coveralls.io/github/ngabopatrick/Quick-credit?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/cd92c477487f93412024/maintainability)](https://codeclimate.com/github/ngabopatrick/Quick-credit/maintainability) 
+# Quick-credit [![Build Status](https://travis-ci.org/ngabopatrick/Quick-credit.svg?branch=develop)](https://travis-ci.org/ngabopatrick/Quick-credit) [![Coverage Status](https://coveralls.io/repos/github/ngabopatrick/Quick-credit/badge.svg?branch=develop)](https://coveralls.io/github/ngabopatrick/Quick-credit?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/4e47b9685247bd1a7f38/maintainability)](https://codeclimate.com/github/patrickngabo/Quick-credit/maintainability)
 
 # Getting started
 
